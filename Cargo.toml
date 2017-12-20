@@ -1,17 +1,22 @@
 [package]
-name = "hydrazine"
-version = "0.1.0"
 authors = ["Marcel Müller <neikos@neikos.email>"]
-documentation = "https://docs.rs/hydrazine/"
-description = "An opinionated admin interface for Rocket with Diesel."
-repository = "https://github.com/TheNeikos/hydrazine"
-readme = "./README.md"
-keywords = ["rocket", "diesel", "admin-page"]
 categories = ["web-programming"]
+description = "An opinionated admin interface for Rocket with Diesel."
+documentation = "https://docs.rs/hydrazine/"
+keywords = ["rocket", "diesel", "admin-page"]
 license = "MIT"
+name = "hydrazine"
+readme = "./README.md"
+repository = "https://github.com/TheNeikos/hydrazine"
+version = "0.1.0"
 
 [badges]
-travis-ci = { repository = "TheNeikos/hydrazine", branch = "master" }
-maintenance = { statuc = "actively-developed" }
+
+[badges.maintenance]
+status = "actively-developed"
+
+[badges.travis-ci]
+branch = "master"
+repository = "TheNeikos/hydrazine"
 
 [dependencies]
