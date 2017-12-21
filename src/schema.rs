@@ -5,15 +5,15 @@ use error::HResult;
 
 #[derive(Debug, Clone)]
 pub struct Column {
-    typ: String,
-    name: String,
+    pub typ: String,
+    pub name: String,
 }
 
 #[derive(Debug, Clone)]
 pub struct Table {
-    schema: String,
-    name: String,
-    columns: Vec<Column>,
+    pub schema: String,
+    pub name: String,
+    pub columns: Vec<Column>,
 }
 
 #[derive(Queryable)]
@@ -29,8 +29,7 @@ impl Schema {
         -> HResult<Vec<Table>>
     {
         use diesel::prelude::*;
-        use self::columns::dsl::*;
-        use self::columns::table;
+        use self::schema::columns::dsl::*;
 
         let mut schemas = columns
             .filter(table_schema.eq_any(schemas))
@@ -57,12 +56,14 @@ impl Schema {
     }
 }
 
-table! {
-    information_schema.columns (table_schema, table_name, column_name) {
-        table_schema -> VarChar,
-        table_name -> VarChar,
-        column_name -> VarChar,
-        udt_name -> VarChar,
+#[allow(unused_import_braces)] // This is needed as the macro expands which triggers this lint
+mod schema {
+    table! {
+        information_schema.columns (table_schema, table_name, column_name) {
+            table_schema -> VarChar,
+            table_name -> VarChar,
+            column_name -> VarChar,
+            udt_name -> VarChar,
+        }
     }
 }
-

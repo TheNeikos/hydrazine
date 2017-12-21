@@ -1,3 +1,29 @@
+#![deny(
+     missing_docs,
+     non_camel_case_types,
+     non_snake_case,
+     path_statements,
+     trivial_casts,
+     trivial_numeric_casts,
+     unsafe_code,
+     unstable_features,
+     unused_allocation,
+     unused_import_braces,
+     unused_imports,
+     unused_must_use,
+     unused_mut,
+     while_true,
+ )]
+
+//! # Hydrazine
+//! ### An opinionated admin interface
+//!
+//! To put it simple, Hydrazine is meant to make your task easy to setup a quick admin interface
+//! for your web projects. It is written for the [Rocket][rocket] framework.
+//!
+//! [rocket]: https://rocket.rs
+//!
+
 #[cfg(test)] extern crate dotenv;
 
 #[macro_use] extern crate diesel;
@@ -26,9 +52,10 @@ mod tests {
     }
 
     #[test]
-    fn check_all_tables() {
+    fn check_users_tables() {
         let conn = establish_connection();
-        let _tables : Vec<Table> = Schema::load(&conn, &["public"], &["users"]).expect("Load schema tables");
-        println!("{:#?}", _tables);
+        let tables : Vec<Table> = Schema::load(&conn, &["public"], &["users"]).expect("Load schema tables");
+        assert!(tables.len() == 1);
+        assert!(tables[0].name == "users");
     }
 }
