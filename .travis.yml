@@ -1,0 +1,11 @@
+language: rust
+rust:
+  - nightly
+cache: cargo
+services:
+  - postgres
+env:
+  - DATABASE_URL=postgres://postgres@localhost/travis_ci_test
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
